@@ -5,7 +5,13 @@ import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js
 const my_vm = (() => {
     let vue_VM = new Vue({
         data: {
-            message: "Hello from Vue!"
+            message: "Hello from Vue!",
+
+            collection: [
+                {name: "Joe", role: "Prof"},
+                {name: "John", role: "Prof"},
+                {name: "Jarrod", role: "Prof"}
+            ]
         },
 
         methods: {
