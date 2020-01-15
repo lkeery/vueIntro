@@ -20,6 +20,10 @@ var vm = new Vue({
       { name: "Marvel's The Avengers", thumb: "avengers.jpg", vidsource: "avengers.mp4", description: "will they make black widow action figures this time?" }
     ],
 
+    videotitle: "Video Title",
+    vidsource: "",
+    videodescription: "Video Description",
+
     showDetails: false
   },
 
@@ -33,6 +37,14 @@ var vm = new Vue({
       // Call the login route, or load login component
 
       this.user.isLoggedIn = (this.user.isLoggedIn) ? false : true;
+    },
+
+    showMovieDetails({name, vidsource, description}) {
+      this.videotitle = name;
+      this.videodescription = description;
+      this.vidsource = vidsource;
+
+      this.showDetails = true;
     }
   }
 });
