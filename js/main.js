@@ -8,9 +8,8 @@ var vm = new Vue({
     // mock up the user - this well eventually come from the database UMS (user management system)
 
     user: {
-      isAdmin: false,
-      avatar: null,
-      isLoggedIn: true
+      isLoggedIn: true,
+      settings: {}
     },
 
     // this data would also come from the database, but we'll just mock it up for now
@@ -27,7 +26,26 @@ var vm = new Vue({
     showDetails: false
   },
 
+  created: function() {
+    // run fetch call and get user data
+    console.log('Created lifecycle')
+    this.getUserData();
+  },
+
   methods: {
+    getUserData() {
+      const url = './includes/index.php?getUser=1'; // fetch call to get user from db (endpoint)
+
+      fetch(url) // get data from db
+      .then(res => res.json()) // translate json to plain object
+      .then(data => { // use plain data object
+        console.log(data); // log to console for testing
+
+        this.user.settings = data[0]; // put the db data into vue
+      })
+      .catch((error) => console.error(error))
+    },
+
     setUserPrefs() {
       // This is the preferences control, hit the API when ready to use component
       console.log('Set user prefs here')
